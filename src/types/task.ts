@@ -8,11 +8,11 @@ export const TASK_STATUS_LABEL: Record<TaskStatus, string> = {
 };
 
 export type Task = {
-  id: string; // ВАЖНО: строка (uuid)
+  id: string; 
   title: string;
   description: string;
   status: TaskStatus;
-  createdAt: string; // ISO
+  createdAt: string; 
 };
 
 export type CreateTaskDto = {
