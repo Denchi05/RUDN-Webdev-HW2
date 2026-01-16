@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { AppHeader } from './components/AppHeader/AppHeader';
+import { BoardPage } from './pages/BoardPage/BoardPage';
+import { CreateTaskPage } from './pages/CreateTaskPage/CreateTaskPage';
+import { TaskPage } from './pages/TaskPage/TaskPage';
 
+/**
+ * Root component. It renders the application header and sets up the
+ * client‑side routes for the three pages defined by the assignment. If
+ * an unknown route is accessed, the user is redirected to `/board`.
+ */
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <AppHeader />
+      <Routes>
+        <Route path="/" element={<Navigate to="/board" />} />
+        <Route path="/board" element={<BoardPage />} />
+        <Route path="/create" element={<CreateTaskPage />} />
+        <Route path="/task/:id" element={<TaskPage />} />
+        <Route path="*" element={<Navigate to="/board" />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
